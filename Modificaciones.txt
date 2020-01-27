@@ -10,3 +10,10 @@ Consultas
 - Usuarios por tipo de usuario 
 - Cursos por status 
 - Cursos por forma de pago
+
+
+
+HISTORICO_CURSO 
+- FECHA_ESTATUS = fecha en la que se crea el histórico
+- ESTATUS_PAGO_CURSO_ID ¿Se va mandar directamente el id o se va a mandar el nombre y el back lo relaciona?
+- CURSO_ID ¿Se va mandar directamente el id o se va a mandar el nombre y el back lo relaciona?
