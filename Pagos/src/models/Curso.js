@@ -1,8 +1,10 @@
 import Sequelize from 'sequelize';
 import { sequelize } from '../database/database';
 
+import HistoricoCurso from './HistoricoCurso';
+
 const Curso = sequelize.define('curso',{
-    cursoid:{
+    curso_id:{
         type: Sequelize.INTEGER,
         primaryKey: true
     },
@@ -19,7 +21,7 @@ const Curso = sequelize.define('curso',{
         type: Sequelize.STRING(40) 
     },
     antecedentes:{
-        type: Sequelize.STRING(40) 
+        type: Sequelize.STRING(40)
     },
     material:{
         type: Sequelize.STRING(40) 
@@ -45,5 +47,9 @@ const Curso = sequelize.define('curso',{
     freezeTableName: true,
     allowNull: false
 });
+
+//Llave foranea CURSO_ID de HISTORICO_CURSO
+Curso.hasMany(HistoricoCurso, { foreignKey: 'curso_id', sourcekey: 'curso_id'});
+HistoricoCurso.belongsTo(Curso, { foreignKey: 'curso_id', sourcekey: 'curso_id'});
 
 export default Curso;

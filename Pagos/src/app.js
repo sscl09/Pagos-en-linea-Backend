@@ -6,7 +6,7 @@ import morgan from 'morgan';
 // Importación de rutas
 import cursoRoutes from './routes/curso';
 import cursoUsuarioRoutes from './routes/cursoUsuario';
-import estadoCursoRoutes from './routes/estadoCurso';
+import statusPagoCursoRoutes from './routes/estatusPagoCurso';
 import facturaRoutes from './routes/factura';
 import formaPagoRoutes from './routes/formaPago';
 import historicoCursoRoutes from './routes/historicoCurso';
@@ -24,7 +24,7 @@ app.use(json());            //Para que el servidor pueda entender JSON
 // routes  
 app.use('/api/curso',cursoRoutes);
 app.use('/api/cursoUsuario',cursoUsuarioRoutes);
-app.use('/api/estadoCurso',estadoCursoRoutes);
+app.use('/api/estatusPagoCurso',statusPagoCursoRoutes);
 app.use('/api/factura',facturaRoutes);
 app.use('/api/formaPago',formaPagoRoutes);
 app.use('/api/historicoCurso',historicoCursoRoutes);

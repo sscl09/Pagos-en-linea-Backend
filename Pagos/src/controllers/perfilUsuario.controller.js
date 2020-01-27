@@ -1,16 +1,16 @@
 import PerfilUsuario from '../models/PerfilUsuario';
 
-//  Crea un tipo de usuario
+//  Crea un perfil de usuario
 export async function createPerfilUsuario (req, res){
-    const { perfilusuario, descripcion, porcientodescuento } = req.body;
+    const { perfil_usuario, descripcion, porciento_descuento } = req.body;
     try{
         let newPerfilUsuario = await PerfilUsuario.create({
-            perfilusuario, 
+            perfil_usuario, 
             descripcion, 
-            porcientodescuento
+            porciento_descuento
         },
         {
-            fields: [ 'perfilusuario', 'descripcion', 'porcientodescuento']
+            fields: [ 'perfil_usuario', 'descripcion', 'porciento_descuento']
         });
         if (newPerfilUsuario) {
             return res.json({
@@ -19,7 +19,6 @@ export async function createPerfilUsuario (req, res){
             });
         }
     } catch(error){
-        //console.log(error);
         res.status(500).json({
             message:'Something goes wrong',
             data: {}
@@ -27,7 +26,7 @@ export async function createPerfilUsuario (req, res){
     }
 }
 
-// Obtiene todos los tipos de usuario de la base de datos
+// Obtiene todos los perfiles de usuario de la base de datos
 export async function getPerfilUsuario (req, res){
     try{
         const perfilesUsuario = await PerfilUsuario.findAll();
@@ -41,13 +40,13 @@ export async function getPerfilUsuario (req, res){
 
 }
 
-// Obtiene una forma de pago por su id
+// Obtiene un perfil de usuario por su id
 export async function getOnePerfilUsuario (req, res){
     const { id } = req.params;
     try{
         const perfilUsuario = await PerfilUsuario.findOne({
             where: {
-                perfilusuarioid:id
+                perfil_usuario_id:id
             }
         });
         return res.json (perfilUsuario);
@@ -59,13 +58,13 @@ export async function getOnePerfilUsuario (req, res){
     }
 }
 
-// Elimina una forma de pago por su id
+// Elimina un perfil de usuario por su id
 export async function deletePerfilUsuario(req, res){
     const { id } = req.params;
     try{
         const deleteRowCount = await PerfilUsuario.destroy({
             where: {
-                perfilusuarioid:id
+                perfil_usuario_id:id
             }
         });
         return res.json ({
@@ -80,25 +79,25 @@ export async function deletePerfilUsuario(req, res){
     }
 }
 
-// Actualiza los valores de un curso por su id
+// Actualiza los valores de un perfil de usuario por su id
 export async function updatePerfilUsuario (req, res){
     const { id } = req.params;
-    const { perfilusuario, descripcion, porcientodescuento } = req.body;
+    const { perfil_usuario, descripcion, porciento_descuento } = req.body;
 
     try{
         const perfilesUsuario = await PerfilUsuario.findAll({
-            attributes: [ 'perfilusuarioid', 'perfilusuario', 'descripcion', 'porcientodescuento'],
+            attributes: [ 'perfil_usuario_id', 'perfil_usuario', 'descripcion', 'porciento_descuento'],
             where:{
-                perfilusuarioid : id
+                perfil_usuario_id : id
             }
         });
     
         if (perfilesUsuario.length > 0){
             perfilesUsuario.forEach(async perfilUsuario => {
                 await perfilUsuario.update({
-                    perfilusuario, 
+                    perfil_usuario, 
                     descripcion, 
-                    porcientodescuento
+                    porciento_descuento
                 });
             });
         }

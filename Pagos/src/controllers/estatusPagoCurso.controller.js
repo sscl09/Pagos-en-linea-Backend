@@ -1,8 +1,8 @@
-import EstadoCurso from '../models/EstadoCurso';
+import EstadoCurso from '../models/EstatusPagoCurso';
 
 
-//  Crea un nuevo estado curso
-export async function createEstadoCurso (req, res){
+//  Crea un nuevo estado de pago para un curso
+export async function createEstatusPagoCurso (req, res){
     const { nombre, descripcion } = req.body;
     try{
         let newEstadoCurso = await EstadoCurso.create({
@@ -27,8 +27,8 @@ export async function createEstadoCurso (req, res){
     }
 }
 
-// Obtiene todos los estados curso de la base de datos 
-export async function getEstadosCursos (req, res){
+// Obtiene todos los estados de pago de un curso de la base de datos 
+export async function getEstatusPagoCurso (req, res){
     try{
         const estadosCursos = await EstadoCurso.findAll();
         return res.json (estadosCursos);
@@ -41,13 +41,13 @@ export async function getEstadosCursos (req, res){
 
 }
 
-// Obtiene un estado curso por su id
-export async function getOneEstadoCurso (req, res){
+// Obtiene un estado de pago de un curso por su id
+export async function getOneEstatusPagoCurso (req, res){
     const { id } = req.params;
     try{
         const estadoCurso = await EstadoCurso.findOne({
             where: {
-                estadocursoid:id
+                estatus_pago_curso_id:id
             }
         });
         return res.json (estadoCurso);
@@ -60,17 +60,17 @@ export async function getOneEstadoCurso (req, res){
 
 }
 
-// Elimina un estado curso por su id
-export async function deleteEstadoCurso (req, res){
+// Elimina un estado de pago de un curso por su id
+export async function deleteEstatusPagoCurso(req, res){
     const { id } = req.params;
     try{
         const deleteRowCount = await EstadoCurso.destroy({
             where: {
-                estadocurso:id
+                estatus_pago_curso_id:id
             }
         });
         return res.json ({
-            message: 'Estados de curso elminados exitosamente',
+            message: 'Estado de pago de curso elminados exitosamente',
             count: deleteRowCount
         });
     } catch (error){
@@ -81,16 +81,16 @@ export async function deleteEstadoCurso (req, res){
     }
 }
 
-// Actualiza los valores de un estado curso por su id
-export async function updateEstadoCurso (req, res){
+// Actualiza los valores de un estado de pago de curso por su id
+export async function updateEstatusPagoCurso (req, res){
     const { id } = req.params;
     const { nombre, descripcion } = req.body;
 
     try{
         const estadosCursos = await EstadoCurso.findAll({
-            attributes: ['estadocursoid', 'estadocurso', 'descripcion'],
+            attributes: ['estatus_pago_curso_id', 'nombre', 'descripcion'],
             where:{
-                estadocursoid : id
+                estatus_pago_curso_id : id
             }
         });
     

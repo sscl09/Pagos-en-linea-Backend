@@ -1,12 +1,12 @@
 import Sequelize from 'sequelize';
 import { sequelize } from '../database/database';
 
-const FormaPago = sequelize.define('formapago',{
-    formapagoid:{
+const FormaPago = sequelize.define('forma_pago',{
+    forma_pago_id:{
         type: Sequelize.INTEGER,
         primaryKey: true
     },
-    formapago:{
+    forma_pago:{
         type: Sequelize.STRING(40)
     },
     descripcion:{

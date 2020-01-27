@@ -27,7 +27,6 @@ export async function createCurso (req, res){
             });
         }
     } catch(error){
-        console.log("Hola");
         console.log(error);
         res.status(500).json({
             message:'Something goes wrong',
@@ -50,17 +49,18 @@ export async function getCursos (req, res){
 
 }
 
-// Obtiene una forma de pago por su id
+// Obtiene un curso por su id
 export async function getOneCurso (req, res){
     const { id } = req.params;
     try{
         const curso = await Curso.findOne({
             where: {
-                cursoid:id
+                curso_id:id
             }
         });
         return res.json (curso);
     } catch (error){
+        console.log(error);
         res.status(500).json({
             message:'Something goes wrong',
             data: {}
@@ -68,13 +68,13 @@ export async function getOneCurso (req, res){
     }
 }
 
-// Elimina una forma de pago por su id
+// Elimina un curso por su id
 export async function deleteCurso(req, res){
     const { id } = req.params;
     try{
         const deleteRowCount = await Curso.destroy({
             where: {
-                cursoid:id
+                curso_id:id
             }
         });
         return res.json ({
@@ -92,24 +92,30 @@ export async function deleteCurso(req, res){
 // Actualiza los valores de un curso por su id
 export async function updateCurso (req, res){
     const { id } = req.params;
-    const { nombre, precio, duracionsemanas, fechainicio, fechafin } = req.body;
+    const { imagen, hora_inicio, hora_fin, temario, antecedentes, material, nombre, precio, fecha_inicio, cupo, fecha_fin } = req.body;
 
     try{
         const cursos = await Curso.findAll({
-            attributes: [ 'cursoid', 'nombre', 'precio', 'duracionsemanas', 'fechainicio', 'fechafin'],
+            attributes: [ 'curso_id', 'imagen', 'hora_inicio', 'hora_fin', 'temario', 'antecedentes', 'material', 'nombre', 'precio', 'fecha_inicio', 'cupo', 'fecha_fin'],
             where:{
-                cursoid : id
+                curso_id : id
             }
         });
     
         if (cursos.length > 0){
             cursos.forEach(async curso => {
                 await curso.update({
-                    nombre, 
-                    precio, 
-                    duracionsemanas, 
-                    fechainicio, 
-                    fechafin
+                    imagen,
+                    hora_inicio,
+                    hora_fin,
+                    temario,
+                    antecedentes,
+                    material,
+                    nombre,
+                    precio,
+                    fecha_inicio,
+                    cupo,
+                    fecha_fin
                 });
             });
         }
@@ -125,3 +131,4 @@ export async function updateCurso (req, res){
     }
 
 }
+

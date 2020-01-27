@@ -1,16 +1,13 @@
 import Sequelize from 'sequelize';
 import { sequelize } from '../database/database';
 
-const EstadoCurso = sequelize.define('estadocurso',{
-    estadocursoid:{
+const FichaReferencia = sequelize.define('ficha_referencia',{
+    ficha_referencia_id:{
         type: Sequelize.INTEGER,
         primaryKey: true
     },
-    nombre:{
-        type: Sequelize.STRING(40)
-    },
-    descripcion:{
-        type: Sequelize.TEXT
+    referencia:{
+        type: Sequelize.DECIMAL(20)
     }
 },
 {
@@ -19,4 +16,4 @@ const EstadoCurso = sequelize.define('estadocurso',{
     allowNull: false
 });
 
-export default EstadoCurso;
+export default FichaReferencia;

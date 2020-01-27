@@ -1,16 +1,16 @@
 import Sequelize from 'sequelize';
 import { sequelize } from '../database/database';
 
-const TipoUsuario = sequelize.define('tipousuario',{
-    tipousuarioid:{
+const TipoUsuario = sequelize.define('tipo_usuario',{
+    tipo_usuario_id:{
         type: Sequelize.INTEGER,
         primaryKey: true
     },
-    tipousuario:{
+    tipo_usuario:{
         type: Sequelize.STRING(40)
     },
     descripcion:{
-        type: Sequelize.TEXT
+        type: Sequelize.STRING(40)
     }
 },
 {

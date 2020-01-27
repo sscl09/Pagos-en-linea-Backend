@@ -1,16 +1,16 @@
-import FormaPago from '../models/FormaPago';
+import FormaPago from '../models/HistoricoCurso';
 
 
-//  Crea una nueva forma de pago
-export async function createFormaPago (req, res){
-    const { forma_pago, descripcion } = req.body;
+//  Crea un historico de curso
+export async function createHistoricoCurso (req, res){
+    const { formapago, descripcion } = req.body;
     try{
         let newFormaPago = await FormaPago.create({
-            forma_pago,
+            formapago,
             descripcion
         },
         {
-            fields: ['forma_pago', 'descripcion']
+            fields: ['formapago', 'descripcion']
         });
         if (newFormaPago) {
             return res.json({
@@ -27,8 +27,8 @@ export async function createFormaPago (req, res){
     }
 }
 
-// Obtiene todas las formas de pago de la base de datos 
-export async function getFormasPago (req, res){
+// Obtiene todas historico de curso de la base de datos 
+export async function getHistoricoCurso (req, res){
     try{
         const formasPago = await FormaPago.findAll();
         return res.json (formasPago);
@@ -41,13 +41,13 @@ export async function getFormasPago (req, res){
 
 }
 
-// Obtiene una forma de pago por su id
-export async function getOneFormaPago (req, res){
+// Obtiene un  historico de curso por su id
+export async function getOneHistoricoCurso (req, res){
     const { id } = req.params;
     try{
         const formaPago = await FormaPago.findOne({
             where: {
-                forma_pago_id:id
+                formapagoid:id
             }
         });
         return res.json (formaPago);
@@ -60,13 +60,13 @@ export async function getOneFormaPago (req, res){
 
 }
 
-// Elimina una forma de pago por su id
-export async function deleteFormaPago (req, res){
+// Elimina un  historico de curso por su id
+export async function deleteHistoricoCurso (req, res){
     const { id } = req.params;
     try{
         const deleteRowCount = await FormaPago.destroy({
             where: {
-                forma_pago_id:id
+                formapagoid:id
             }
         });
         return res.json ({
@@ -81,23 +81,23 @@ export async function deleteFormaPago (req, res){
     }
 }
 
-// Actualiza los valores de una forma de pago por su id
-export async function updateFormaPago (req, res){
+// Actualiza los valores de un historico de curso por su id
+export async function updateHistoricoCurso (req, res){
     const { id } = req.params;
-    const { forma_pago, descripcion } = req.body;
+    const { formapago, descripcion } = req.body;
 
     try{
         const formasPago = await FormaPago.findAll({
-            attributes: ['forma_pago_id', 'forma_pago', 'descripcion'],
+            attributes: ['formapagoid', 'formapago', 'descripcion'],
             where:{
-                forma_pago_id : id
+                formapagoid : id
             }
         });
     
         if (formasPago.length > 0){
             formasPago.forEach(async formaPago => {
                 await formaPago.update({
-                    forma_pago,
+                    formapago,
                     descripcion
                 });
             });

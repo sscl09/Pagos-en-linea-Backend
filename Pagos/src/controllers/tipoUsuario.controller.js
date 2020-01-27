@@ -2,14 +2,14 @@ import TipoUsuario from '../models/TipoUsuario';
 
 //  Crea un tipo de usuario
 export async function createTipoUsuario (req, res){
-    const { tipousuario, descripcion } = req.body;
+    const { tipo_usuario, descripcion } = req.body;
     try{
         let newTipoUsuario = await TipoUsuario.create({
-            tipousuario, 
+            tipo_usuario, 
             descripcion
         },
         {
-            fields: ['tipousuario', 'descripcion']
+            fields: ['tipo_usuario', 'descripcion']
         });
         if (newTipoUsuario) {
             return res.json({
@@ -40,13 +40,13 @@ export async function getTiposUsuarios (req, res){
 
 }
 
-// Obtiene una forma de pago por su id
+// Obtiene un tipo de usuario por su id
 export async function getOneTipoUsuario (req, res){
     const { id } = req.params;
     try{
         const tipoUsuario = await TipoUsuario.findOne({
             where: {
-                tipousuarioid:id
+                tipo_usuario_id:id
             }
         });
         return res.json (tipoUsuario);
@@ -58,13 +58,13 @@ export async function getOneTipoUsuario (req, res){
     }
 }
 
-// Elimina una forma de pago por su id
+// Elimina un tipo de usuario por su id
 export async function deleteTipoUsuario(req, res){
     const { id } = req.params;
     try{
         const deleteRowCount = await TipoUsuario.destroy({
             where: {
-                tipousuarioid:id
+                tipo_usuario_id:id
             }
         });
         return res.json ({
@@ -79,23 +79,23 @@ export async function deleteTipoUsuario(req, res){
     }
 }
 
-// Actualiza los valores de un curso por su id
+// Actualiza los valores de un tipo de usuario por su id
 export async function updateTipoUsuario (req, res){
     const { id } = req.params;
     const { tipousuario, descripcion } = req.body;
 
     try{
         const tiposUsuarios = await TipoUsuario.findAll({
-            attributes: [ 'tipousuarioid', 'tipousuario', 'descripcion'],
+            attributes: [ 'tipo_usuario_id', 'tipo_usuario', 'descripcion'],
             where:{
-                tipousuarioid : id
+                tipo_usuario_id : id
             }
         });
     
         if (tiposUsuarios.length > 0){
             tiposUsuarios.forEach(async tipoUsario => {
                 await tipoUsario.update({
-                    tipousuario, 
+                    tipo_usuario, 
                     descripcion
                 });
             });

@@ -2,12 +2,12 @@ import Sequelize from 'sequelize';
 import { sequelize } from '../database/database';
 
 const Factura = sequelize.define('factura',{
-    facturaid:{
+    factura_id:{
         type: Sequelize.INTEGER,
         primaryKey: true
     },
     factura:{
-        type: Sequelize.DECIMAL(4,2)
+        type: Sequelize.DECIMAL(6,2)
     }
 },
 {
