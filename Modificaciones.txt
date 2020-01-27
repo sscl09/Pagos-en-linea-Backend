@@ -1,0 +1,12 @@
+Cambios
+- Agregar la relación HISTORICO_CURSO - USUARIO
+- Agregar atributo "activo" a USUARIO y a CURSO
+
+
+Consultas
+- Todos los cursos de un usuario
+- Todos los usuarios de que estén en un curso 
+- Usuarios por perfil
+- Usuarios por tipo de usuario 
+- Cursos por status 
+- Cursos por forma de pago
